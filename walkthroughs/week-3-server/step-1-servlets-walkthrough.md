@@ -49,8 +49,8 @@ To see an example, explore the `examples/page-view-counter` directory.
 
 Specifically, open the
 <walkthrough-editor-open-file
-    filePath="step/walkthroughs/week-3-server/examples/page-view-counter/src/main/java/com/google/sps/servlets/PageViewServlet.java">
-  PageViewServlet.java
+    filePath="step/walkthroughs/week-3-server/examples/page-view-counter/src/main/java/com/google/sps/servlets/.java">
+  .java
 </walkthrough-editor-open-file>
 file. This is a servlet class that handles the `/page-views` URL and responds
 with HTML that contains a count of how many times the page has been loaded.
@@ -85,7 +85,7 @@ Run this command and then click the
 <walkthrough-web-preview-icon></walkthrough-web-preview-icon> icon and then
 select **Preview on port 8080** to open a tab that displays the `index.html`
 file. Then navigate to `/page-views` to see the content that's coming from the
-`PageViewServlet.java` file.
+`.java` file.
 
 **Remember:** The code in a servlet's `doGet()` function runs every time a
 client requests its URL. That means you can write Java code that generates
