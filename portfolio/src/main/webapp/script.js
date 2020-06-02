@@ -15,14 +15,9 @@
 /**
  * Adds a random greeting to the page.
  */
-function addRandomGreeting() {
-  const greetings =
-      ['I am on the Cheerleading team', 'I love ice cream', 'I like to sing', 'my favorite color is yellow'];
+async function getData() {
+  const response = await fetch('/data');
+  const data = await response.text();
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+  document.getElementById('data-container').innerText = data;
 }
