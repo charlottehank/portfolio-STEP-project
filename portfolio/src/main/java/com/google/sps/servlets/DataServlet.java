@@ -50,17 +50,8 @@ public class DataServlet extends HttpServlet {
       long timestamp = (long) entity.getProperty("timestamp");
     }
 
-    String json = convertToJson(words);
-
     response.setContentType("application/json;");
-    response.getWriter().println(json);
-  }
-
-
-   private String convertToJson(ArrayList<String> words) {
-    Gson gson = new Gson();
-    String json = gson.toJson(words);
-    return json;
+    response.getWriter().println(words);
   }
 
 
