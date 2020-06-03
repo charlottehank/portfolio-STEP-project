@@ -53,7 +53,7 @@ public class DataServlet extends HttpServlet {
     String json = convertToJson(words);
 
     response.setContentType("application/json;");
-    response.getWriter().println(words);
+    response.getWriter().println(json);
   }
 
 
