@@ -29,17 +29,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
-import java.util.ArrayList;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet that returns content and comments*/
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
     ArrayList<String> words = new ArrayList<String>();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query query = new Query("Task").addSort("timestamp", SortDirection.DESCENDING);
-    
+    Query query = new Query("Task");
+
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
     
@@ -47,11 +46,25 @@ public class DataServlet extends HttpServlet {
     for (Entity entity : results.asIterable()) {
       long id = entity.getKey().getId();
       String title = (String) entity.getProperty("user-comments");
-      long timestamp = (long) entity.getProperty("timestamp");
     }
 
     response.setContentType("application/json;");
-    response.getWriter().println(words);
+
+    String json = "";
+
+    //get max number of comments
+    int numComments = getNumComments(request);
+
+    //convert request number of comments to json
+    if  (words.size() <= numComments){
+        json = new Gson().toJson(words);
+    }else{
+        for (int i = 0; i < numComments; i++){
+            json += new Gson().toJson(words.get(i));
+        }
+    }
+
+    response.getWriter().println(json);
   }
 
 
@@ -59,7 +72,6 @@ public class DataServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
     String userComment = request.getParameter("user-comments");
-    long timestamp = System.currentTimeMillis();
 
     //add user comment to ArrayList
     words.add(userComment);
@@ -67,7 +79,6 @@ public class DataServlet extends HttpServlet {
     //entity with comment property to store user comments
     Entity taskEntity = new Entity("Task");
     taskEntity.setProperty("user-comments", userComment);
-    taskEntity.setProperty("timestamp", timestamp);
 
     //storing using Datastore
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -76,4 +87,22 @@ public class DataServlet extends HttpServlet {
     // Redirect back to the HTML page.
     response.sendRedirect("/index.html");
   }
+
+/** Returns the choice entered by the player, or -1 if the choice was invalid. */
+  private int getNumComments(HttpServletRequest request) {
+    // Get the input from the form.
+    String numCommentsStr = request.getParameter("num-comments");
+
+    // Convert the input to an int.
+    int numComments;
+    try {
+      numComments = Integer.parseInt(numCommentsStr);
+    } catch (NumberFormatException e) {
+      System.err.println("Could not convert to int: " + numCommentsStr);
+      return -1;
+    }
+
+    return numComments;
+  }
+
 }

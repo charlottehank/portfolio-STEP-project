@@ -16,7 +16,7 @@
  * Adds a random greeting to the page.
  */
 async function getData() {
-  const response = await fetch('/data');
+  const response = await fetch('/data?num-comments=3');
   const data = await response.text();
 
   document.getElementById('data-container').innerText = data;
