@@ -13,11 +13,29 @@
 // limitations under the License.
 
 /**
- * Adds a random greeting to the page.
+ * Adds a comments to the page.
  */
-async function getData() {
-  const response = await fetch('/data?num-comments=3');
-  const data = await response.text();
+function getData() {
+  fetch('/data').then(response=>response.json()).then((data)=>{
 
-  document.getElementById('data-container').innerText = data;
+  let numComments = document.getElementById('num-comments').value;
+  const comments = document.getElementById('data-container');
+  comments.innerHTML = '';
+
+  for (let i=0; i < numComments && i < data.length; i++)
+  {
+    //add non blank comments to container
+    if (data[i] != ""){
+    comments.appendChild(createListElement(data[i]));
+    console.log(comments[i]);
+    }
+  }
+  });
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
