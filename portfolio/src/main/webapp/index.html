@@ -66,7 +66,8 @@
 
       <form action="/data" method="POST">
 
-      <h3>Any Comments? </h3>
+      <h3>Enter a comment!</h3>
+      <p>please leave your name! </p>
       <input type="text" name="user-comments">
       <br/><br/>
       
@@ -76,19 +77,23 @@
       <br>
       <br>
 
-      <h3>Data</h3>
-      <label>Choose the number of comments to be displayed:</label>
+      <label>How many comments would you like displayed?</label>
 
-      <select name="num-comments" id="num-comments">
-        <option value="5">5</option>
+      <select name="num-comments" id="num-comments" onchange="getMaxNumberOfComments()">
+        <option value="5" selected>5</option>
         <option value="10">10</option>
         <option value="15">15</option>
       </select>
-      <br/><br/>
-      <p>Click here for previous comments :</p>
-      <button onclick="getMaxNumberOfComments()"> print data!</button>
+      
+      <br>
+      <br>
+
+      <h3>Previous Comments</h3>
+      <body onload="getMaxNumberOfComments()">
       <div id="data-container"></div>
-    
+      <br>
+      <br>
+
     </div>
   </body>
 </html>
