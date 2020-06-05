@@ -13,29 +13,29 @@
 // limitations under the License.
 
 /**
- * Adds a comments to the page.
+ * fetch and add comments to the page.
  */
-function getData() {
+function getMaxNumberOfComments() {
   fetch('/data').then(response=>response.json()).then((data)=>{
-
-  let numComments = document.getElementById('num-comments').value;
-  const comments = document.getElementById('data-container');
-  comments.innerHTML = '';
-
-  for (let i=0; i < numComments && i < data.length; i++)
-  {
-    //add non blank comments to container
-    if (data[i] != ""){
-    comments.appendChild(createListElement(data[i]));
-    console.log(comments[i]);
-    }
-  }
-  });
+      let numComments = document.getElementById('num-comments').value;
+      const comments = document.getElementById('data-container');
+      comments.innerHTML = '';
+      
+      //display certain number of comments by comparing the number of current 
+      //comments with the number of comments requested by the user.
+      for (let i=0; i < numComments && i < data.length; i++){
+          //format i comments in a list and display to the webpage.
+          if (data[i] != ""){
+              comments.appendChild(createListElement(data[i]));
+              console.log(comments[i]);
+              }
+        }
+    });
 }
 
-/** Creates an <li> element containing text. */
+/**Create an <li> element containing text.*/
 function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
+    const liElement = document.createElement('li');
+    liElement.innerText = text;
+    return liElement;
 }
