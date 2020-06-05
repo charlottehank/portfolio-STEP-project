@@ -64,22 +64,30 @@
 
       <br>
 
-      <h3>Data</h3>
-      <p>Click here to see printed data:</p>
-      <button onclick="getData()"> print data!</button>
-      <div id="data-container"></div>
-
-      <br>
-    
       <form action="/data" method="POST">
 
       <h3>Any Comments? </h3>
       <input type="text" name="user-comments">
-      <br/>
-      <br/>
-
+      <br/><br/>
+      
       <input type="submit" />
       </form>
+
+      <br>
+      <br>
+
+      <h3>Data</h3>
+      <label>Choose the number of comments to be displayed:</label>
+
+      <select name="num-comments" id="num-comments">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+      </select>
+      <br/><br/>
+      <p>Click here for previous comments :</p>
+      <button onclick="getData()"> print data!</button>
+      <div id="data-container"></div>
     
     </div>
   </body>
