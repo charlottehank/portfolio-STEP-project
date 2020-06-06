@@ -13,29 +13,34 @@
 // limitations under the License.
 
 /**
- * fetch and add comments to the page.
+ * Fetch and add comments to the page.
  */
 function getMaxNumberOfComments() {
-  fetch('/data').then(response=>response.json()).then((data)=>{
+  fetch('/data').then(response=>response.json()).then((data)=> {
       let numComments = document.getElementById('num-comments').value;
       const comments = document.getElementById('data-container');
       comments.innerHTML = '';
       
-      //display certain number of comments by comparing the number of current 
-      //comments with the number of comments requested by the user.
-      for (let i=0; i < numComments && i < data.length; i++){
-          //format i comments in a list and display to the webpage.
-          if (data[i] != ""){
+      //Display the maximum number of comments requested by the user.
+      for (let i=0; i<numComments && i<data.length; i++) {
+          //Format i comments in a list and display to the webpage.
+          if (data[i] != "") {
               comments.appendChild(createListElement(data[i]));
-              console.log(comments[i]);
-              }
+            }
         }
     });
 }
 
-/**Create an <li> element containing text.*/
+/** Create an <li> element containing text.*/
 function createListElement(text) {
     const liElement = document.createElement('li');
     liElement.innerText = text;
     return liElement;
+}
+
+/** Fetches comments from the server and deletes them.*/
+function deleteComments() {
+    fetch('/delete-data', {method: 'POST'}).then((response)=>{
+         this.getMaxNumberOfComments();
+    });
 }
