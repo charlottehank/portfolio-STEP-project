@@ -44,3 +44,30 @@ function deleteComments() {
          this.getMaxNumberOfComments();
     });
 }
+
+
+//CHARTS
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+/** Creates a chart and adds it to the page. */
+function drawChart() {
+  const data = new google.visualization.DataTable();
+  data.addColumn('string', 'Flavor');
+  data.addColumn('number', 'Count');
+        data.addRows([
+          ['Vanilla', 10],
+          ['Chocolate', 5],
+          ['Strawberry', 15]
+        ]);
+
+  const options = {
+    'title': 'Favorite Ice Cream Flavors',
+    'width':500,
+    'height':400
+  };
+
+  const chart = new google.visualization.PieChart(
+      document.getElementById('chart-container'));
+  chart.draw(data, options);
+}
