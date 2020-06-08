@@ -24,6 +24,7 @@
       <br>
       <br>
       <a href="https://github.com/charlottehank"> Visit my GitHub!</a>
+      
       <br>
       <br>
       
@@ -63,17 +64,26 @@
 
       <h3>Vote for Ice Cream!</h3>
       <p>I love Ice Cream and I want to know your favorite flavor!</p>
+
+      <p>Enter your favorite flavor here:</p>
+      <form action="/icecream-data" method="POST">
+      <input type="text" name="flavor">
+      <br/><br/>
+      <input type="Submit"/>
+      </form>
+
       <p>Here are the current favorites:</p>
       <br>
       <script src="https://www.gstatic.com/charts/loader.js"></script>
       <script src="script.js"></script>
       <div id="chart-container"></div>
 
+
       <br>
       <br>
 
       <form action="/data" method="POST">
-      <h3>Comments on my portfolio!</h3>
+      <h3>Comment on my portfolio!</h3>
       <p>please leave your name! </p>
       <input type="text" name="user-comments">
       <br/><br/>

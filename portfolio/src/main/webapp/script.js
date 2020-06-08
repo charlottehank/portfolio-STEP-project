@@ -52,14 +52,14 @@ google.charts.setOnLoadCallback(drawChart);
 
 /** Creates a chart and adds it to the page. */
 function drawChart() {
-  const data = new google.visualization.DataTable();
-  data.addColumn('string', 'Flavor');
-  data.addColumn('number', 'Count');
-        data.addRows([
-          ['Vanilla', 10],
-          ['Chocolate', 5],
-          ['Strawberry', 15]
-        ]);
+  fetch('/icecream-data').then(response => response.json())
+  .then((iceCreamVotes) => {
+    const data = new google.visualization.DataTable();
+    data.addColumn('string', 'Flavor');
+    data.addColumn('number', 'Votes');
+    Object.keys(iceCreamVotes).forEach((flavor) => {
+      data.addRow([flavor, iceCreamVotes[flavor]]);
+    });
 
   const options = {
     'title': 'Favorite Ice Cream Flavors',
@@ -70,4 +70,5 @@ function drawChart() {
   const chart = new google.visualization.PieChart(
       document.getElementById('chart-container'));
   chart.draw(data, options);
+  });
 }
