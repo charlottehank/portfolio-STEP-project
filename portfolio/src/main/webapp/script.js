@@ -64,11 +64,12 @@ function drawChart() {
   const options = {
     'title': 'Favorite Ice Cream Flavors',
     'width':500,
-    'height':400
+    'height':400,
+    is3D = true,
   };
 
   const chart = new google.visualization.PieChart(
       document.getElementById('chart-container'));
-  chart.draw(data, options);
+    chart.draw(data, options);
   });
 }
