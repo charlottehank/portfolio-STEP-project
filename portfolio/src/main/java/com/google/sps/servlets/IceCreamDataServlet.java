@@ -43,12 +43,12 @@ public class IceCreamDataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    //Query for ice cream flavor storage through datastore.
+    // Query for ice cream flavor storage through datastore.
     Query query = new Query("Flavors");
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
     
-    //Populate flavors with ice cream titles from Datastore.
+    // Populate flavors with ice cream titles from Datastore.
     for (Entity entity : results.asIterable()) {
       String title = (String) entity.getProperty("flavor");
       long votes = (long) entity.getProperty("votes");
@@ -68,29 +68,29 @@ public class IceCreamDataServlet extends HttpServlet {
     String flavor = request.getParameter("flavor");
     long currentVotes = 0;
     
-    //Single query to get ice cream votes within datastore.
+    // Single query to get ice cream votes within datastore.
     Query query = new Query("Flavors").setFilter(new FilterPredicate("flavor", FilterOperator.EQUAL, flavor));
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
     Entity result = results.asSingleEntity();
 
     if (result!=null){
-       //Add another vote to an existing flavor.
+       // Add another vote to an existing flavor.
        currentVotes = (long)result.getProperty("votes") + 1;
     }else{
-        //The flavor is not already in the datastore. 
+        // The flavor is not already in the datastore. 
         currentVotes = 1;
     }
 
-    //Create entity with flavor and votes properties to store favorite ice cream flavors.
+    // Create entity with flavor and votes properties to store favorite ice cream flavors.
     Entity flavorEntity = new Entity("Flavors", flavor);
     flavorEntity.setProperty("flavor", flavor); 
     flavorEntity.setProperty("votes", currentVotes); 
        
-    //Add votes and flavor type to the Datastore for longterm storage.
+    // Add votes and flavor type to the Datastore for longterm storage.
     datastore.put(flavorEntity);
 
-    //Send the user back to the index page after adding their favorite flavor.
+    // Send the user back to the index page after adding their favorite flavor.
     response.sendRedirect("/index.html");
   }
 }

@@ -32,18 +32,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 
-/**Servlet that deletes all previous comments*/
+/** Servlet that deletes all previous comments*/
 @WebServlet("/delete-data")
 public class DeleteCommentServlet extends HttpServlet {
     
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    //Query for comment storage through datastore.
+    // Query for comment storage through datastore.
     Query query = new Query("Task");
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
     
-    //Delete comments with titles from Datastore.
+    // Delete comments with titles from Datastore.
     for (Entity entity : results.asIterable()) {
         datastore.delete(entity.getKey());
         

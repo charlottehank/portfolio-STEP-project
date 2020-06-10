@@ -21,9 +21,9 @@ function getMaxNumberOfComments() {
       const comments = document.getElementById('data-container');
       comments.innerHTML = '';
       
-      //Display the maximum number of comments requested by the user.
+      // Display the maximum number of comments requested by the user.
       for (let i=0; i<numComments && i<data.length; i++) {
-          //Format i comments in a list and display to the webpage.
+          // Format i comments in a list and display to the webpage.
           if (data[i] != "") {
               comments.appendChild(createListElement(data[i]));
             }
