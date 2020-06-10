@@ -36,12 +36,12 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    //Query for comment storage through datastore.
+    // Query for comment storage through datastore.
     Query query = new Query("Task");
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
     
-    //Populate comments with titles from Datastore.
+    // Populate comments with titles from Datastore.
     ArrayList<String> comments = new ArrayList<String>();
     for (Entity entity : results.asIterable()) {
       String title = (String) entity.getProperty("user-comments");
@@ -58,15 +58,15 @@ public class DataServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String userComment = request.getParameter("user-comments");
 
-    //Create entity with comment property to store user comments.
+    // Create entity with comment property to store user comments.
     Entity taskEntity = new Entity("Task");
     taskEntity.setProperty("user-comments", userComment);
 
-    //Add comments to the Datastore for longterm storage. 
+    // Add comments to the Datastore for longterm storage. 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(taskEntity);
 
-    //Send the user back to the index page after adding a comment.
+    // Send the user back to the index page after adding a comment.
     response.sendRedirect("/index.html");
   }
 }
