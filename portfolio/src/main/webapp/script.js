@@ -45,10 +45,13 @@ function deleteComments() {
     });
 }
 
+// /** Fetches log in status from the server.*/
+// function isLoggedIn(){
+//     fetch('/log-in').then((response)=>{
+//       document.getElementById("user-comments").style.display="block";
+//     });
+// }
 
-//CHARTS
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
 
 /** Creates a chart and adds it to the page. */
 function drawChart() {
@@ -61,15 +64,14 @@ function drawChart() {
       data.addRow([flavor, iceCreamVotes[flavor]]);
     });
 
-  const options = {
-    'title': 'Favorite Ice Cream Flavors',
-    'width':500,
-    'height':400,
-    is3D = true,
-  };
+    const options = {
+      'title': 'Favorite Ice Cream Flavors',
+      'width':500,
+      'height':400,
+    };
 
-  const chart = new google.visualization.PieChart(
-      document.getElementById('chart-container'));
+    const chart = new google.visualization.PieChart(
+        document.getElementById('chart-container'));
     chart.draw(data, options);
   });
 }
