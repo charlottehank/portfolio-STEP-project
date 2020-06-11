@@ -74,7 +74,7 @@ public class IceCreamDataServlet extends HttpServlet {
     PreparedQuery results = datastore.prepare(query);
     Entity result = results.asSingleEntity();
 
-    if (result!=null){
+    if (result != null){
        // Add another vote to an existing flavor.
        currentVotes = (long)result.getProperty("votes") + 1;
     }else{

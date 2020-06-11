@@ -46,7 +46,6 @@ public class DeleteCommentServlet extends HttpServlet {
     // Delete comments with titles from Datastore.
     for (Entity entity : results.asIterable()) {
         datastore.delete(entity.getKey());
-        
     }
 
     response.sendRedirect("/index.html");
