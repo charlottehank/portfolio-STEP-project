@@ -22,7 +22,7 @@ function getMaxNumberOfComments() {
       comments.innerHTML = '';
       
       // Display the maximum number of comments requested by the user.
-      for (let i=0; i<numComments && i<data.length; i++) {
+      for (let i = 0; i < numComments && i < data.length; i++) {
           // Format i comments in a list and display to the webpage.
           if (data[i] != "") {
               comments.appendChild(createListElement(data[i]));
@@ -44,13 +44,6 @@ function deleteComments() {
          this.getMaxNumberOfComments();
     });
 }
-
-// /** Fetches log in status from the server.*/
-// function isLoggedIn(){
-//     fetch('/log-in').then((response)=>{
-//       document.getElementById("user-comments").style.display="block";
-//     });
-// }
 
 
 /** Creates a chart and adds it to the page. */

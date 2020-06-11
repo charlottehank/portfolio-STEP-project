@@ -54,8 +54,6 @@ public class IceCreamDataServlet extends HttpServlet {
       long votes = (long) entity.getProperty("votes");
       iceCreamVotes.put(title, votes);
     }
-
-    System.out.println(iceCreamVotes.size());
     
    response.setContentType("application/json");
    Gson gson = new Gson();
