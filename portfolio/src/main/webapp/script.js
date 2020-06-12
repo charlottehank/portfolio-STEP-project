@@ -45,14 +45,6 @@ function deleteComments() {
     });
 }
 
-// /** Fetches log in status from the server.*/
-// function isLoggedIn(){
-//     fetch('/log-in').then((response)=>{
-//       document.getElementById("user-comments").style.display="block";
-//     });
-// }
-
-
 /** Creates a chart and adds it to the page. */
 function drawChart() {
   fetch('/icecream-data').then(response => response.json())
