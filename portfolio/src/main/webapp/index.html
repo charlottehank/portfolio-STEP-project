@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="createMap();drawChart();getMaxNumberOfComments();">
     <div id="content">
       <h1>Charlotte Hank</h1>
       <img src="/images/charlotte.jpg" alt= "charlotte hank" style="width:200px;height:300px;">
@@ -82,19 +82,25 @@
       <input type="Submit"/>
       </form>
 
+    
       <p>Here are the current favorites:</p>
-      <body onload="drawChart()">
       <div id="chart-container"></div>
 
+
+      <br>
+      <br>
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBenQ9i_Lohx2OPejdsRj5fWJZNGh4bvmU"></script>
+      <h3>View my Hometown:</h3>
+      <div id="map"></div> 
+      <p>This map shows my Hometown!</p>
 
       <br>
       <br>
       
       <h3>Comment on my portfolio!</h3>
 
-     <button onclick="isLoggedIn()">Log In</button>
-
-      <form action="/data" method="POST" style="display: none">
+      <form action="/data" method="POST">
       <p>Please leave your name! </p>
       <input type="text" name="user-comments">
       <br/><br/>
@@ -118,7 +124,6 @@
       <br>
 
       <h3>Previous Comments:</h3>
-      <body onload="getMaxNumberOfComments()">
       <div id="data-container"></div>
       
       <br>
