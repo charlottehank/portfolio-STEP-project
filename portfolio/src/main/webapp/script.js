@@ -45,14 +45,6 @@ function deleteComments() {
     });
 }
 
-// /** Fetches log in status from the server.*/
-// function isLoggedIn(){
-//     fetch('/log-in').then((response)=>{
-//       document.getElementById("user-comments").style.display="block";
-//     });
-// }
-
-
 /** Creates a chart and adds it to the page. */
 function drawChart() {
   fetch('/icecream-data').then(response => response.json())
@@ -74,4 +66,10 @@ function drawChart() {
         document.getElementById('chart-container'));
     chart.draw(data, options);
   });
+}
+
+/** Creates a map and adds it to the page. */
+function createMap() {
+  const map = new google.maps.Map(
+      document.getElementById('map'),{center: {lat: 41.8098, lng: -87.9006}, zoom: 15});
 }
