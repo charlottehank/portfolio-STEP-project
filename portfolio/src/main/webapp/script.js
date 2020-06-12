@@ -73,13 +73,13 @@ function createMap() {
   const map = new google.maps.Map(
       document.getElementById('map'),{center: {lat: 41.8, lng: -87.89}, zoom: 13});
       
-      addLandmark(map, 41.78769, -87.868353, 'Andys Frozen Custard',
+  addLandmark(map, 41.78769, -87.868353, 'Andys Frozen Custard',
       'Andys is my favorite custard place!')
-      addLandmark(map, 41.789893, -87.888829, 'The Highland Queen Drive-In',
+  addLandmark(map, 41.789893, -87.888829, 'The Highland Queen Drive-In',
       'I love going to Highland Queen with my family!')
-      addLandmark(map, 41.819385, -87.899897, 'Oberwise Ice Cream and Dairy Store',
+  addLandmark(map, 41.819385, -87.899897, 'Oberwise Ice Cream and Dairy Store',
       'Oberwise is a great place to get ice cream with friends!')
-      addLandmark(map, 41.790255, -87.8795, 'La Michocana',
+  addLandmark(map, 41.790255, -87.8795, 'La Michocana',
       'The best place to get Mexican style ice cream!')
 }
 
