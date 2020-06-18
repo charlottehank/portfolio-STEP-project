@@ -22,20 +22,19 @@ public final class FindMeetingQuery {
       Collection<TimeRange> time = new ArrayList<>();
 
       // There are no attendees so the meeting can happen any time.
-      if(request.getAttendees().size() == 0)
-      {
+      if (request.getAttendees().size() == 0) {
         TimeRange range = TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TimeRange.END_OF_DAY, true);
         time.add(range);
         return time;
       }
 
       // Meeting request is too long so no time for the meeting can be found.
-      if(request.getDuration() > 24*60)
-      {
+      if (request.getDuration() > 24*60) {
           return time;
       }
       
-      for(Event event : events){
+      //Create possible meeting times before and after each existing event in the day 
+      for (Event event : events) {
           TimeRange before = TimeRange.fromStartEnd(TimeRange.START_OF_DAY, event.getWhen().start(), false);
           TimeRange after = TimeRange.fromStartEnd(event.getWhen().end(), TimeRange.END_OF_DAY, true);
           time.add(before);
