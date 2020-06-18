@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="createMap();drawChart();getMaxNumberOfComments();">
     <div id="content">
       <h1>Charlotte Hank</h1>
       <img src="/images/charlotte.jpg" alt= "charlotte hank" style="width:200px;height:300px;">
@@ -14,7 +14,7 @@
       <br>
 
       <h3>Welcome to my portfolio!</h3>
-      <p>I am a rising sophomore at Vandebilt University persuing a degree in Computer Science!</p>
+      <p>I am a rising sophomore at Vandebilt University pursuing a degree in Computer Science and a minor in Engineering Management!</p>
       <p>I am also on the cheerleading team at Vanderbilt and am currently working as a Google STEP intern!</p>
       
       <br>
@@ -82,10 +82,19 @@
       <input type="Submit"/>
       </form>
 
+    
       <p>Here are the current favorites:</p>
-      <body onload="drawChart()">
       <div id="chart-container"></div>
 
+
+      <br>
+      <br>
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBenQ9i_Lohx2OPejdsRj5fWJZNGh4bvmU"></script>
+      <h3>View my Hometown:</h3>
+      <div id="map"></div> 
+
+      <p>This map shows my hometown and some of my favorite ice cream places!</p>
 
       <br>
       <br>
@@ -116,7 +125,6 @@
       <br>
 
       <h3>Previous Comments:</h3>
-      <body onload="getMaxNumberOfComments()">
       <div id="data-container"></div>
       
       <br>

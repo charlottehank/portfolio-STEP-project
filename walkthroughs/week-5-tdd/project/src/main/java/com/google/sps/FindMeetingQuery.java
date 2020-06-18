@@ -34,7 +34,7 @@ public final class FindMeetingQuery {
       {
           return time;
       }
-
+      
       for(Event event : events){
           TimeRange before = TimeRange.fromStartEnd(TimeRange.START_OF_DAY, event.getWhen().start(), false);
           TimeRange after = TimeRange.fromStartEnd(event.getWhen().end(), TimeRange.END_OF_DAY, true);
