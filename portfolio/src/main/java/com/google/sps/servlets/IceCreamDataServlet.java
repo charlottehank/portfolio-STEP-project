@@ -55,10 +55,10 @@ public class IceCreamDataServlet extends HttpServlet {
       iceCreamVotes.put(title, votes);
     }
     
-   response.setContentType("application/json");
-   Gson gson = new Gson();
-   String json = gson.toJson(iceCreamVotes);
-   response.getWriter().println(json);
+    response.setContentType("application/json");
+    Gson gson = new Gson();
+    String json = gson.toJson(iceCreamVotes);
+    response.getWriter().println(json);
   }
 
   @Override

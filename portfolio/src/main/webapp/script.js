@@ -45,7 +45,6 @@ function deleteComments() {
     });
 }
 
-
 /** Creates a chart and adds it to the page. */
 function drawChart() {
   fetch('/icecream-data').then(response => response.json())
@@ -66,5 +65,31 @@ function drawChart() {
     const chart = new google.visualization.PieChart(
         document.getElementById('chart-container'));
     chart.draw(data, options);
+  });
+}
+
+/** Creates a map and adds it to the page. */
+function createMap() {
+  const map = new google.maps.Map(
+      document.getElementById('map'),{center: {lat: 41.8, lng: -87.89}, zoom: 13});
+      
+  addLandmark(map, 41.78769, -87.868353, 'Andys Frozen Custard',
+      'Andys is my favorite custard place!')
+  addLandmark(map, 41.789893, -87.888829, 'The Highland Queen Drive-In',
+      'I love going to Highland Queen with my family!')
+  addLandmark(map, 41.819385, -87.899897, 'Oberwise Ice Cream and Dairy Store',
+      'Oberwise is a great place to get ice cream with friends!')
+  addLandmark(map, 41.790255, -87.8795, 'La Michocana',
+      'The best place to get Mexican style ice cream!')
+}
+
+/** Adds a marker that shows an info window when clicked. */
+function addLandmark(map, lat, lng, title, description) {
+  const marker = new google.maps.Marker(
+      {position: {lat: lat, lng: lng}, map: map, title: title});
+
+  const infoWindow = new google.maps.InfoWindow({content: description});
+  marker.addListener('click', () => {
+    infoWindow.open(map, marker);
   });
 }
